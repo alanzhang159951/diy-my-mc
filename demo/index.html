@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="vwvUt0eFirzSsnmJq1lHZZ">
+<head data-page-node-id="JKEtC5O4HlOf9j0mmUzTwH">
+<meta charset="UTF-8" data-page-node-id="MbT6Z4bc8CL6WUBS4cgnNv">
+<meta name="viewport" content="width=device-width, initial-scale=1" data-page-node-id="GkpfFR9CAC7Jf7atpzDFwz">
+<title>DIY 我的麦 · 交互演示</title>
+<style>
+:root{
+  --bg:#f6f5f3; --card:#ffffff; --line:#e4e1dc; --ink:#1e1c1a; --muted:#6b6660;
+  --accent:#b8362b; --accent-soft:#fbeceb; --gold:#c8901a; --gold-soft:#fdf4e0;
+  --ok:#2f6b4f; --ok-soft:#eaf3ee;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.6;padding:28px 20px 60px;
+}
+.wrap{max-width:1120px;margin:0 auto}
+header{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+h1{font-size:22px;font-weight:600;letter-spacing:-.2px}
+.tag{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:2px 10px;background:#fff}
+.sub{color:var(--muted);font-size:14px;margin-bottom:18px}
+.banner{
+  background:var(--gold-soft);border:1px solid #f0dfb8;color:#7a5a10;
+  font-size:13px;border-radius:10px;padding:9px 14px;margin-bottom:20px;
+}
+main{display:grid;grid-template-columns:330px 1fr;gap:20px;align-items:start}
+@media(max-width:880px){main{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.card h2{font-size:14px;font-weight:600;margin-bottom:16px;color:var(--ink)}
+.field{margin-bottom:20px}
+.field label{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:8px}
+.field label b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--accent);height:4px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{
+  font-size:13px;padding:5px 12px;border-radius:99px;border:1px solid var(--line);
+  background:#fff;color:var(--muted);cursor:pointer;user-select:none;transition:.12s;
+}
+.chip:hover{border-color:#c9c4bc}
+.chip.on{background:var(--accent-soft);border-color:#e3b3ad;color:var(--accent);font-weight:500}
+.chip.no.on{background:#f1efec;border-color:#c9c4bc;color:#4a4540}
+select{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:9px;background:#fff;font-size:13px;color:var(--ink)}
+.results{display:flex;flex-direction:column;gap:14px}
+.scheme{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;position:relative}
+.scheme.top{border-color:#e3b3ad;box-shadow:0 1px 0 #e3b3ad inset}
+.scheme-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:12px}
+.scheme-name{font-size:15px;font-weight:600}
+.medal{display:inline-block;font-size:11px;font-weight:600;color:var(--gold);background:var(--gold-soft);border-radius:6px;padding:1px 7px;margin-right:8px;vertical-align:1px}
+.price{text-align:right;white-space:nowrap}
+.price b{font-size:21px;font-weight:600;color:var(--accent);font-variant-numeric:tabular-nums}
+.price s{display:block;font-size:12px;color:var(--muted);font-weight:400}
+.rows{display:flex;flex-direction:column;gap:7px;font-size:13.5px}
+.row{display:flex;gap:10px}
+.row .k{color:var(--muted);min-width:62px;flex-shrink:0}
+.row .v{color:var(--ink)}
+.swap{color:var(--ok);background:var(--ok-soft);border-radius:6px;padding:1px 7px;font-size:12.5px}
+.nutri{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+.nutri span b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.why{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--muted)}
+.why b{color:var(--ink);font-weight:600}
+.empty{background:var(--card);border:1px dashed var(--line);border-radius:14px;padding:40px;text-align:center;color:var(--muted);font-size:14px}
+.foot{margin-top:22px;font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+</style>
+</head>
+<body data-page-node-id="yQ0uPhFdvPRCfhV8wdFfxD">
+<div class="wrap" data-page-node-id="1jMONYBFHjoKUDDBaHUOWs">
+  <header data-page-node-id="PaErNvFHJPmV6MyILbcgiP">
+    <h1 data-page-node-id="cc0RWZeEMKRXgp8ZnaBGJk">DIY 我的麦</h1>
+    <span class="tag" data-page-node-id="NuC5OEPiR6rxxoeHMq97nn">交互演示</span>
+    <span class="tag" data-page-node-id="ewovoKPE0og2IDmkCmEMrD">无需 Token</span>
+    <span class="tag" data-page-node-id="VYfTHw5u9SYct4mjagErpM">离线可跑</span>
+  </header>
+  <p class="sub" data-page-node-id="hyagLHlI9l6aHRIozOEMVB">报出口味、预算和热量目标，在真实菜单结构上现组一份专属套餐——含套餐内替换、用券与到手价。</p>
+  <div class="banner" data-page-node-id="0NJZNZHkSoGNbRczgT9w9n">
+    演示使用的是<b data-page-node-id="gqHbnEAENO6SulqsRpEIgy">虚构样例数据</b>，不是麦当劳真实菜单与价格。真实数据通过麦当劳中国官方 MCP Server
+    （<code data-page-node-id="omFx8HqLV9blaFXiYkKSnh">https://mcp.mcd.cn</code>）实时获取，价格由 <code data-page-node-id="IEF5JAGbDqmB3sFDagwoCW">calculate-price</code> 后端实算。
+  </div>
+
+  <main data-page-node-id="mF6ugShXxWPLDqWFHnYF6f">
+    <section class="card" data-page-node-id="crxnB1Q7BFGXTSDleQdYiO">
+      <h2 data-page-node-id="P8vMQK5cr0WRF13YsYz8Gb">你的约束</h2>
+
+      <div class="field" data-page-node-id="Z4Th2qkts8cfVlw4J8tJZl">
+        <label data-page-node-id="kyQyejJ7ivvQtJxxaVRmV2">到手价上限 <b id="vBudget" data-page-node-id="BO1RCYRaesqNk7KOrjX5Y7">¥30</b></label>
+        <input type="range" id="budget" min="15" max="60" step="1" value="30" data-page-node-id="3TqVrHQq8gGsXJtlvDzCoM">
+      </div>
+
+      <div class="field" data-page-node-id="8aOEqC5gh9ybC65Vb4egwg">
+        <label data-page-node-id="TmZfRhjHCYIDIUdSCYC9vY">目标热量 <b id="vKcal" data-page-node-id="InUYNFnvNq7fcH5D2opHMP">700 kcal</b></label>
+        <input type="range" id="kcal" min="300" max="1200" step="50" value="700" data-page-node-id="J9lAS0toVgkktERguvvv1f">
+      </div>
+
+      <div class="field" data-page-node-id="4GQoBRY1Smu9pho9iljUoR">
+        <label data-page-node-id="ZCojkE62AXD5QIZ2cNyh6r">口味偏好</label>
+        <div class="chips" id="likes" data-page-node-id="O1gNSwRDzs9RuBeGAPWjRB"></div>
+      </div>
+
+      <div class="field" data-page-node-id="O19FDriri1RJhmKVIovrps">
+        <label data-page-node-id="ZY0tFoVbIUpy4BYNeBJRfE">忌口 / 排除</label>
+        <div class="chips" id="dislikes" data-page-node-id="Lj8rm3L1g4wE80z6zKBbcz"></div>
+      </div>
+
+      <div class="field" data-page-node-id="gxAehgPF4B51g3t1cqoNPV">
+        <label data-page-node-id="PgCCdRb0UPk4H3ACkJXzAO">就餐时段</label>
+        <select id="period" data-page-node-id="aieKEyHN7mmn4E0epUtMGF">
+          <option value="" data-page-node-id="kKhiblDWtzLpsuGHGjEEOW">任意时段</option>
+          <option value="早餐" data-page-node-id="cfsbgLIBwbASbocEGPLTuL">早餐</option>
+          <option value="午餐" data-page-node-id="dorj3pKQQbnF9D1WjeYx9G">午餐</option>
+          <option value="晚餐" data-page-node-id="CBT8aaLYzgyxFQ5YjBN7S2">晚餐</option>
+          <option value="夜宵" data-page-node-id="1BZyTe7J8Ve2z3CMkGA5oq">夜宵</option>
+        </select>
+      </div>
+
+      <div class="field" style="margin-bottom:0" data-page-node-id="1SPEwiwKv6jBqC4xPaPimL">
+        <label data-page-node-id="gzbBGnbbFl2LxeljWJplWb">其它</label>
+        <div class="chips" id="opts" data-page-node-id="LeSVSF2ZMkz2xYtXEMKBFv"></div>
+      </div>
+    </section>
+
+    <section class="results" id="results" data-page-node-id="7jGPvrg7IxF4CaYLdLGRN3"></section>
+  </main>
+
+  <div class="foot" data-page-node-id="SHzT9tZeVQACDpDIJNe6yX">
+    <span data-page-node-id="Htpr0KB9kTvtacenFjccxa">离线演示 · 算法与 <code data-page-node-id="aRDEndTX9OubkrrVAFng9G">scripts/diy_mc.py</code> 一致</span>
+    <span data-page-node-id="qzuCT1hdBPmEXJfkUCmokv">麦当劳程序员创意开发大赛参赛作品 · 非麦当劳官方产品</span>
+  </div>
+</div>
+
+<script>
+const MEALS = [
+  {code:"burger-bigmac",name:"巨无霸",category:"主食",price:23.0,tags:["牛肉","经典","招牌"],mealPeriods:["午餐","晚餐"]},
+  {code:"burger-mcchicken",name:"麦香鸡",category:"主食",price:15.0,tags:["鸡肉","不辣"],mealPeriods:["午餐","晚餐"]},
+  {code:"burger-spicychicken",name:"麦辣鸡腿堡",category:"主食",price:19.0,tags:["鸡肉","辣","招牌"],mealPeriods:["午餐","晚餐"]},
+  {code:"burger-doublecheese",name:"双层吉士汉堡",category:"主食",price:19.5,tags:["牛肉","芝士"],mealPeriods:["午餐","晚餐"]},
+  {code:"burger-fish",name:"麦香鱼",category:"主食",price:15.5,tags:["鱼","不辣"],mealPeriods:["午餐","晚餐"]},
+  {code:"burger-grilled",name:"板烧鸡腿堡",category:"主食",price:21.0,tags:["鸡肉","不辣","煎烤"],mealPeriods:["午餐","晚餐"]},
+  {code:"side-fries-m",name:"薯条(中)",category:"配餐",price:11.0,tags:["炸","土豆"],mealPeriods:["早餐","午餐","晚餐","夜宵"]},
+  {code:"side-fries-l",name:"薯条(大)",category:"配餐",price:13.5,tags:["炸","土豆"],mealPeriods:["午餐","晚餐","夜宵"]},
+  {code:"side-nuggets-5",name:"麦乐鸡(5块)",category:"配餐",price:12.0,tags:["鸡肉","炸"],mealPeriods:["午餐","晚餐","夜宵"]},
+  {code:"side-wings-2",name:"麦辣鸡翅(2块)",category:"配餐",price:13.0,tags:["鸡肉","炸","辣"],mealPeriods:["午餐","晚餐","夜宵"]},
+  {code:"side-corn",name:"玉米杯",category:"配餐",price:9.0,tags:["不辣","轻食"],mealPeriods:["早餐","午餐","晚餐"]},
+  {code:"side-salad",name:"蔬菜沙拉",category:"配餐",price:12.5,tags:["轻食","不辣","低卡"],mealPeriods:["午餐","晚餐"]},
+  {code:"drink-coke-m",name:"可口可乐(中)",category:"饮品",price:9.0,tags:["碳酸","甜"],mealPeriods:["午餐","晚餐","夜宵"]},
+  {code:"drink-cokezero-m",name:"零度可乐(中)",category:"饮品",price:9.0,tags:["碳酸","零糖","低卡"],mealPeriods:["午餐","晚餐","夜宵"]},
+  {code:"drink-sprite-m",name:"雪碧(中)",category:"饮品",price:9.0,tags:["碳酸","甜"],mealPeriods:["午餐","晚餐","夜宵"]},
+  {code:"drink-orange-m",name:"橙汁(中)",category:"饮品",price:11.0,tags:["果汁","甜"],mealPeriods:["早餐","午餐","晚餐"]},
+  {code:"drink-americano",name:"美式咖啡",category:"饮品",price:12.0,tags:["咖啡","零糖","低卡"],mealPeriods:["早餐","午餐"]},
+  {code:"drink-latte",name:"拿铁",category:"饮品",price:16.0,tags:["咖啡","奶"],mealPeriods:["早餐","午餐"]},
+  {code:"dessert-cone",name:"圆筒冰淇淋",category:"甜品",price:4.0,tags:["甜","冰","低卡"],mealPeriods:["午餐","晚餐","夜宵"]},
+  {code:"dessert-pie",name:"香芋派",category:"甜品",price:8.0,tags:["甜","炸"],mealPeriods:["午餐","晚餐","夜宵"]},
+  {code:"bk-mcmuffin-egg",name:"吉士蛋麦满分",category:"早餐",price:13.0,tags:["早餐","蛋"],mealPeriods:["早餐"]},
+  {code:"bk-hotcakes",name:"热香饼",category:"早餐",price:14.0,tags:["早餐","甜"],mealPeriods:["早餐"]},
+];
+const NUTRITION = {
+  "burger-bigmac":{kcal:550,protein:26,fat:29,carb:45,sodium:1100},
+  "burger-mcchicken":{kcal:400,protein:21,fat:16,carb:43,sodium:900},
+  "burger-spicychicken":{kcal:520,protein:24,fat:25,carb:51,sodium:1180},
+  "burger-doublecheese":{kcal:440,protein:25,fat:23,carb:34,sodium:1050},
+  "burger-fish":{kcal:340,protein:15,fat:14,carb:38,sodium:720},
+  "burger-grilled":{kcal:470,protein:28,fat:19,carb:44,sodium:1010},
+  "side-fries-m":{kcal:340,protein:4,fat:17,carb:42,sodium:260},
+  "side-fries-l":{kcal:450,protein:6,fat:22,carb:56,sodium:350},
+  "side-nuggets-5":{kcal:220,protein:13,fat:12,carb:14,sodium:470},
+  "side-wings-2":{kcal:240,protein:15,fat:15,carb:11,sodium:520},
+  "side-corn":{kcal:90,protein:3,fat:2,carb:18,sodium:150},
+  "side-salad":{kcal:45,protein:2,fat:1.5,carb:7,sodium:120},
+  "drink-coke-m":{kcal:150,protein:0,fat:0,carb:38,sodium:25},
+  "drink-cokezero-m":{kcal:0,protein:0,fat:0,carb:0,sodium:20},
+  "drink-sprite-m":{kcal:145,protein:0,fat:0,carb:37,sodium:45},
+  "drink-orange-m":{kcal:120,protein:1,fat:0,carb:29,sodium:15},
+  "drink-americano":{kcal:5,protein:0.3,fat:0,carb:0.8,sodium:10},
+  "drink-latte":{kcal:130,protein:7,fat:6,carb:12,sodium:90},
+  "dessert-cone":{kcal:150,protein:3,fat:4.5,carb:24,sodium:70},
+  "dessert-pie":{kcal:240,protein:3,fat:11,carb:32,sodium:180},
+  "bk-mcmuffin-egg":{kcal:300,protein:15,fat:13,carb:28,sodium:700},
+  "bk-hotcakes":{kcal:350,protein:8,fat:9,carb:58,sodium:620},
+};
+const DETAILS = {
+  "set-spicy-meal":{name:"麦辣鸡腿堡四件套",price:34.0,components:[
+    {code:"burger-spicychicken",name:"麦辣鸡腿堡",qty:1},
+    {code:"side-fries-m",name:"薯条(中)",qty:1,replaceOptions:[
+      {code:"side-fries-l",name:"薯条(大)",priceDelta:3.0},
+      {code:"side-corn",name:"玉米杯",priceDelta:0.0},
+      {code:"side-salad",name:"蔬菜沙拉",priceDelta:1.5}]},
+    {code:"drink-coke-m",name:"可口可乐(中)",qty:1,replaceOptions:[
+      {code:"drink-cokezero-m",name:"零度可乐(中)",priceDelta:0.0},
+      {code:"drink-sprite-m",name:"雪碧(中)",priceDelta:0.0},
+      {code:"drink-orange-m",name:"橙汁(中)",priceDelta:2.0},
+      {code:"drink-americano",name:"美式咖啡",priceDelta:3.0}]},
+    {code:"side-wings-2",name:"麦辣鸡翅(2块)",qty:1,replaceOptions:[
+      {code:"side-nuggets-5",name:"麦乐鸡(5块)",priceDelta:0.0}]}]},
+  "set-bigmac":{name:"巨无霸四件套",price:42.0,components:[
+    {code:"burger-bigmac",name:"巨无霸",qty:1},
+    {code:"side-fries-m",name:"薯条(中)",qty:1,replaceOptions:[
+      {code:"side-fries-l",name:"薯条(大)",priceDelta:3.0},
+      {code:"side-corn",name:"玉米杯",priceDelta:0.0},
+      {code:"side-salad",name:"蔬菜沙拉",priceDelta:1.5}]},
+    {code:"drink-coke-m",name:"可口可乐(中)",qty:1,replaceOptions:[
+      {code:"drink-cokezero-m",name:"零度可乐(中)",priceDelta:0.0},
+      {code:"drink-americano",name:"美式咖啡",priceDelta:3.0}]},
+    {code:"dessert-pie",name:"香芋派",qty:1}]},
+  "set-grilled":{name:"板烧鸡腿堡四件套",price:40.0,components:[
+    {code:"burger-grilled",name:"板烧鸡腿堡",qty:1},
+    {code:"side-fries-m",name:"薯条(中)",qty:1,replaceOptions:[
+      {code:"side-salad",name:"蔬菜沙拉",priceDelta:1.5},
+      {code:"side-corn",name:"玉米杯",priceDelta:0.0}]},
+    {code:"drink-coke-m",name:"可口可乐(中)",qty:1,replaceOptions:[
+      {code:"drink-cokezero-m",name:"零度可乐(中)",priceDelta:0.0}]},
+    {code:"side-nuggets-5",name:"麦乐鸡(5块)",qty:1}]},
+  "set-breakfast":{name:"早餐双拼",price:22.0,components:[
+    {code:"bk-mcmuffin-egg",name:"吉士蛋麦满分",qty:1},
+    {code:"drink-americano",name:"美式咖啡",qty:1,replaceOptions:[
+      {code:"drink-orange-m",name:"橙汁(中)",priceDelta:-1.0},
+      {code:"drink-latte",name:"拿铁",priceDelta:4.0}]}]},
+};
+const COUPONS = [
+  {name:"账号券 满30减12",threshold:30,discount:12,source:"账号"},
+  {name:"门店券 满20减5",threshold:20,discount:5,source:"门店"},
+  {name:"账号券 满50减20",threshold:50,discount:20,source:"账号"},
+];
+
+const W_TASTE=2.0, W_IN_TARGET=3.0, W_VALUE=2.0, W_COUPON=2.0, KCAL_PENALTY_PER_100=1.0;
+const NEG_PREFIX=["不","无","零","去","免"];
+const MAX_RESULTS=3;
+
+function matches(item, word){
+  if(!word) return false;
+  if(item.name.includes(word)) return true;
+  for(const tag of item.tags){
+    if(tag===word) return true;
+    if(NEG_PREFIX.some(p=>tag.startsWith(p))) continue;
+    if(tag.includes(word)) return true;
+  }
+  return false;
+}
+function unitPrice(code){const m=MEALS.find(x=>x.code===code);return m?m.price:0;}
+function toItem(code,name,price,qty){
+  const m=MEALS.find(x=>x.code===code)||{}, n=NUTRITION[code]||{};
+  return {code,name:name||m.name||code,qty,price:price||0,
+    kcal:n.kcal||0,protein:n.protein||0,fat:n.fat||0,carb:n.carb||0,sodium:n.sodium||0,
+    tags:m.tags||[],isBundle:false};
+}
+function chooseCoupons(total,coupons){
+  const pool=coupons.filter(c=>c.threshold<=total);
+  if(!pool.length) return {chosen:[],discount:0};
+  const bySource={};
+  pool.forEach(c=>{(bySource[c.source]=bySource[c.source]||[]).push(c);});
+  const keys=Object.keys(bySource);
+  let best={chosen:[],discount:0};
+  const walk=(i,picked,disc)=>{
+    if(i===keys.length){
+      if(disc>best.discount) best={chosen:picked.slice(),discount:disc};
+      return;
+    }
+    walk(i+1,picked,disc);
+    for(const c of bySource[keys[i]]) walk(i+1,picked.concat([c]),disc+c.discount);
+  };
+  walk(0,[],0);
+  return best;
+}
+function blocked(items,dislikes){
+  return items.some(it=>dislikes.some(w=>matches(it,w)));
+}
+function inPeriod(items,period){
+  if(!period) return true;
+  return items.every(it=>{
+    const m=MEALS.find(x=>x.code===it.code);
+    return !m||!m.mealPeriods||m.mealPeriods.includes(period);
+  });
+}
+function buildFromSets(period){
+  const out=[];
+  for(const [code,detail] of Object.entries(DETAILS)){
+    const opts=detail.components.map(c=>{
+      const list=[{code:c.code,name:c.name,priceDelta:0,qty:c.qty||1,replaced:false}];
+      (c.replaceOptions||[]).forEach(o=>list.push({code:o.code,name:o.name,priceDelta:o.priceDelta,qty:c.qty||1,replaced:true}));
+      return list;
+    });
+    const combos=[[]];
+    for(const group of opts){
+      const next=[];
+      for(const partial of combos) for(const pick of group) next.push(partial.concat([pick]));
+      combos.length=0; combos.push(...next);
+    }
+    for(const combo of combos){
+      const items=[],swaps=[];let delta=0;
+      detail.components.forEach((orig,i)=>{
+        const pick=combo[i];
+        delta+=pick.priceDelta*pick.qty;
+        items.push(toItem(pick.code,pick.name,unitPrice(pick.code)+pick.priceDelta,pick.qty));
+        if(pick.replaced) swaps.push(`${orig.name} → ${pick.name}`);
+      });
+      if(!inPeriod(items,period)) continue;
+      // 套餐走整包计价：组件单价归零，总价由整包行承担，否则会与整包价重复累加
+      items.forEach(x=>{x.price=0;});
+      items.push({code,name:detail.name,qty:1,price:detail.price+delta,
+        kcal:0,protein:0,fat:0,carb:0,sodium:0,tags:[],isBundle:true});
+      out.push({items,setName:detail.name,swaps});
+    }
+  }
+  return out;
+}
+function buildFromItems(period,wantDessert){
+  const pool=cat=>MEALS.filter(m=>m.category===cat&&(!period||!m.mealPeriods||m.mealPeriods.includes(period)));
+  let mains=pool("主食"); if(!mains.length) mains=pool("早餐");
+  const sides=pool("配餐"),drinks=pool("饮品"),desserts=wantDessert?pool("甜品"):[null];
+  const out=[];
+  for(const a of mains) for(const b of sides) for(const c of drinks) for(const d of desserts){
+    const parts=[a,b,c].concat(d?[d]:[]);
+    out.push({items:parts.map(p=>toItem(p.code,p.name,p.price,1)),setName:"单品自由组合",swaps:[]});
+  }
+  return out;
+}
+function score(s,cfg){
+  let sc=0;const reasons=[];const real=s.items.filter(i=>!i.isBundle);
+  const pairs=cfg.likes.map(l=>[l,real.filter(i=>matches(i,l)).map(i=>i.name)]);
+  const hits=pairs.filter(p=>p[1].length);
+  if(hits.length){sc+=W_TASTE*hits.length;
+    reasons.push("命中口味："+hits.map(p=>`${p[0]}(${p[1].join("/")})`).join("、"));}
+  const lo=Math.max(0,cfg.kcal-150),hi=cfg.kcal+150;
+  if(s.kcal>=lo&&s.kcal<=hi){
+    sc+=W_IN_TARGET;
+    reasons.push(`热量 ${Math.round(s.kcal)} kcal，落在 ${lo}–${hi} 目标区间`);
+    // 越靠近目标中位越优，与 scripts/diy_mc.py 的打分口径保持一致
+    const mid=(lo+hi)/2, half=Math.max(1,(hi-lo)/2);
+    sc+=Math.max(0,1-Math.abs(s.kcal-mid)/half);
+  }
+  else{const over=s.kcal>hi?s.kcal-hi:lo-s.kcal;sc-=KCAL_PENALTY_PER_100*(over/100);
+    reasons.push(`热量 ${Math.round(s.kcal)} kcal，偏离目标区间`);}
+  const ratio=1-(s.final/cfg.budget); sc+=W_VALUE*Math.max(0,ratio);
+  reasons.push(`到手 ¥${s.final.toFixed(2)}，占预算 ${Math.round(s.final/cfg.budget*100)}%`);
+  if(s.original>0){const r=s.discount/s.original;sc+=W_COUPON*r;
+    if(s.coupons.length) reasons.push(`用券 ${s.coupons.length} 张，省 ¥${s.discount.toFixed(2)}（利用率 ${Math.round(r*100)}%）`);}
+  if(s.setName!=="单品自由组合"){sc+=0.5;reasons.push("走套餐路径，整包计价更划算");}
+  return {sc,reasons};
+}
+function generate(cfg){
+  const raw=buildFromSets(cfg.period)
+    .concat(buildFromItems(cfg.period,cfg.wantDessert));
+  const list=[];
+  for(const r of raw){
+    if(blocked(r.items,cfg.dislikes)) continue;
+    const total=r.items.reduce((a,i)=>a+i.price*i.qty,0);
+    const {chosen,discount}=chooseCoupons(total,COUPONS);
+    const final=Math.max(0,total-discount);
+    if(final>cfg.budget+1e-6) continue;
+    const s={items:r.items,setName:r.setName,swaps:r.swaps,original:total,
+      coupons:chosen,discount,final:Math.round(final*100)/100,
+      kcal:r.items.reduce((a,i)=>a+i.kcal*i.qty,0),
+      protein:r.items.reduce((a,i)=>a+i.protein*i.qty,0),
+      fat:r.items.reduce((a,i)=>a+i.fat*i.qty,0),
+      carb:r.items.reduce((a,i)=>a+i.carb*i.qty,0),
+      sodium:r.items.reduce((a,i)=>a+i.sodium*i.qty,0)};
+    const {sc,reasons}=score(s,cfg); s.score=sc; s.reasons=reasons;
+    list.push(s);
+  }
+  list.sort((a,b)=>b.score-a.score);
+  const seen=new Set(),out=[];
+  for(const s of list){
+    const key=s.items.map(i=>i.code).sort().join("|");
+    if(seen.has(key)) continue;
+    seen.add(key); out.push(s);
+    if(out.length>=MAX_RESULTS) break;
+  }
+  return out;
+}
+
+const LIKE_OPTS=["辣","炸","牛肉","鸡肉","鱼","咖啡","甜","轻食","低卡"];
+const NO_OPTS=["牛肉","炸","甜","辣","碳酸","咖啡"];
+const MEDALS=["🥇","🥈","🥉"];
+const fmt=n=>Math.round(n).toLocaleString("en-US");
+let cfg={budget:30,kcal:700,likes:[],dislikes:[],period:"",wantDessert:false};
+
+function chipRow(el,opts,key,cls){
+  el.innerHTML="";
+  opts.forEach(o=>{
+    const d=document.createElement("div");
+    d.className="chip"+(cls?" no":"")+(cfg[key].includes(o)?" on":"");
+    d.textContent=o;
+    d.onclick=()=>{
+      const i=cfg[key].indexOf(o);
+      if(i>=0) cfg[key].splice(i,1); else cfg[key].push(o);
+      d.classList.toggle("on"); render();
+    };
+    el.appendChild(d);
+  });
+}
+function schemeHTML(s,i){
+  const combo=s.items.filter(x=>!x.isBundle).map(x=>x.qty>1?`${x.name}×${x.qty}`:x.name).join(" + ");
+  const swaps=s.swaps.map(x=>`<span class="swap">${x}</span>`).join(" ");
+  const coupons=s.coupons.length?s.coupons.map(c=>c.name).join("、"):"未命中可用券";
+  const isSet=s.setName!=="单品自由组合";
+  return `<div class="scheme${i===0?" top":""}">
+    <div class="scheme-head">
+      <div>
+        <div class="scheme-name"><span class="medal">${MEDALS[i]||"·"} 方案 ${i+1}</span>${isSet?s.setName:"单品自由组合"}</div>
+      </div>
+      <div class="price"><b>¥${s.final.toFixed(2)}</b><s>原价 ¥${s.original.toFixed(2)} ｜ 省 ¥${s.discount.toFixed(2)}</s></div>
+    </div>
+    <div class="rows">
+      <div class="row"><span class="k">组合</span><span class="v">${combo}</span></div>
+      ${swaps?`<div class="row"><span class="k">DIY 替换</span><span class="v">${swaps}</span></div>`:""}
+      <div class="row"><span class="k">用量</span><span class="v">${coupons}</span></div>
+      <div class="row"><span class="k">营养</span><span class="v nutri">
+        <span>能量 <b>${fmt(s.kcal)}</b> kcal</span>
+        <span>蛋白 <b>${fmt(s.protein)}</b> g</span>
+        <span>脂肪 <b>${fmt(s.fat)}</b> g</span>
+        <span>碳水 <b>${fmt(s.carb)}</b> g</span>
+        <span>钠 <b>${fmt(s.sodium)}</b> mg</span>
+      </span></div>
+    </div>
+    <div class="why"><b>为什么是它：</b>${s.reasons.join("；")}</div>
+  </div>`;
+}
+function render(){
+  cfg.budget=+document.getElementById("budget").value;
+  cfg.kcal=+document.getElementById("kcal").value;
+  cfg.period=document.getElementById("period").value;
+  document.getElementById("vBudget").textContent="¥"+cfg.budget;
+  document.getElementById("vKcal").textContent=cfg.kcal+" kcal";
+  const box=document.getElementById("results");
+  const out=generate(cfg);
+  box.innerHTML=out.length?out.map(schemeHTML).join("")
+    :`<div class="empty">没有满足全部约束的方案。<br>试试放宽预算或热量区间，或减少忌口项。</div>`;
+}
+
+chipRow(document.getElementById("likes"),LIKE_OPTS,"likes",false);
+chipRow(document.getElementById("dislikes"),NO_OPTS,"dislikes",true);
+(function(){
+  const el=document.getElementById("opts");
+  const d=document.createElement("div");
+  d.className="chip";d.textContent="来点甜品";
+  d.onclick=()=>{cfg.wantDessert=!cfg.wantDessert;d.classList.toggle("on");render();};
+  el.appendChild(d);
+})();
+document.getElementById("budget").oninput=render;
+document.getElementById("kcal").oninput=render;
+document.getElementById("period").onchange=render;
+render();
+</script>
+</body>
+</html>
