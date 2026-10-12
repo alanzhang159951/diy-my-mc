@@ -1,0 +1,23 @@
+# 本地环境与凭据
+.env
+.env.*
+mcp-config.json
+*.local.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# 编辑器与系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 演示产物
+demo/out/
+*.log
