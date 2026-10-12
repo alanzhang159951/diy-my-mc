@@ -2,6 +2,7 @@
 
 [![Star](https://img.shields.io/github/stars/alanzhang159951/diy-my-mc?style=flat&color=c8901a&label=%E2%98%85)](https://github.com/alanzhang159951/diy-my-mc/stargazers)
 [![contest](https://img.shields.io/badge/%E9%BA%A6%E5%BD%93%E5%8A%B3%E5%BC%80%E5%8F%91%E5%A4%A7%E8%B5%9B-%E5%8F%82%E8%B5%9B%E4%BD%9C%E5%93%81-c8901a)](https://github.com/M-China/mcd-developer-innovation-challenge)
+[![demo](https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E6%BC%94%E7%A4%BA-%E7%82%B9%E5%BC%80%E5%8D%B3%E7%8E%A9-2f6b4f)](https://alanzhang159951.github.io/diy-my-mc/demo/index.html)
 [![mcp](https://img.shields.io/badge/%E9%BA%A6%E5%BD%93%E5%8A%B3%E4%B8%AD%E5%9B%BD%E5%AE%98%E6%96%B9%20MCP-%E9%A9%B1%E5%8A%A8-b8362b)](https://github.com/M-China/mcd-mcp-server)
 ![python](https://img.shields.io/badge/Python-3.9%2B-3776ab)
 ![deps](https://img.shields.io/badge/%E7%AC%AC%E4%B8%89%E6%96%B9%E4%BE%9D%E8%B5%96-0-2f6b4f)
@@ -10,7 +11,7 @@
 
 ![交互演示](demo/preview.gif)
 
-*▲ 不用装任何东西，直接在浏览器里打开 [`demo/index.html`](demo/index.html) 就能拖滑杆玩：改口味、预算、热量，套餐内替换和到手价实时重算。*
+*▲ 不用装任何东西——**[点这里在线玩](https://alanzhang159951.github.io/diy-my-mc/demo/index.html)**（或打开 [`demo/index.html`](demo/index.html)）：改口味、预算、热量，套餐内替换和到手价实时重算。*
 
 **「DIY 我的麦」** 是一个基于**麦当劳中国官方 MCP** 的 WorkBuddy Skill：你报出口味、预算、热量目标和就餐方式，它在你附近门店的**真实菜单**上现组一份专属套餐——优先走「套餐内替换」这条更省钱的路径，把营养、用券情况和**后端算出的真实到手价**一并摊开，你点头之后才下单。
 
